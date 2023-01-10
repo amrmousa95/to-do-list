@@ -16,16 +16,20 @@ if(localStorage.task !=null){
 else{
     tasks = [];
 }
-create.addEventListener("click",function(){
-   let newTask = {
-    task:input.value
-   }
-   tasks.push(newTask)
-   window.localStorage.setItem('task',JSON.stringify(tasks))
 
-   showTasks()
-   input.value = ""
-})
+    create.addEventListener("click",function(){
+        if(input.value != ""){
+            let newTask = {
+                task:input.value
+               }
+               tasks.push(newTask)
+               window.localStorage.setItem('task',JSON.stringify(tasks))
+            
+               showTasks()
+               input.value = ""
+        }
+     })
+
 
 //show tasks
 
