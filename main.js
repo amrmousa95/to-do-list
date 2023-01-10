@@ -24,9 +24,10 @@ create.addEventListener("click",function(){
    window.localStorage.setItem('task',JSON.stringify(tasks))
 
    showTasks()
+   input.value = ""
 })
 
-//show in the screen
+//show tasks
 
 function showTasks(){
     tasks = JSON.parse(localStorage.task)
@@ -34,16 +35,21 @@ function showTasks(){
     for(let i=0; i<tasks.length;i++){
         table += `
             <tr>
-                <td>${tasks[i].task}</td>
-                <td> <button class="done">Done</button> </td>
+                <td class="task">${tasks[i].task}</td>
+                <td> <button class="done" id="done" onclick="deleteTask(${i})">Done</button> </td>
             </tr>
         `
     }
     document.getElementById("tbody").innerHTML = table  
 }
 
-  
-
+//finish task
+function deleteTask(i){
+    tasks.splice(i,1)
+    localStorage.task = JSON.stringify(tasks)
+    showTasks()
+}
+console.log(document.getElementsByClassName("task"))
 //window.localStorage.clear()
 
 
